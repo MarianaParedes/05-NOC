@@ -1,15 +1,18 @@
-import { CronJob } from "cron";
+import { CheckService } from "../domain/use-cases/checks/check-service";
+import { CronService } from "./cron/cron-service";
 
 export class Server {
     public static start(){
-        console.log('Server started....');
-        var job = new CronJob(
-            '******',
-            ()=>{
-                const date = new Date();
-                console.log('message');
-            },
-        )
-        job.start();
+        // console.log('server started')
+        CronService.createJob(
+            '*/5 * * * * *',
+            () => {
+                
+                new CheckService(
+                    () => console.log('success'),
+                    ( error ) => console.log( error ),
+                ).execute( 'http://google.com');
+            }
+        );
     }
 }
