@@ -9,17 +9,18 @@ const fileSystemLogRepository  = new LogRepositoryImpl(
 
 export class Server {
     public static start(){
-        // console.log('server started')
-        CronService.createJob(
-            '*/5 * * * * *',
-            () => {
-                const url = 'http://google.com';               
-                new CheckService(
-                    fileSystemLogRepository,
-                    () => console.log(`${ url } is ok`),
-                    ( error ) => console.log( error ),
-                ).execute( url );
-            }
-        );
+        console.log('server started')
+
+        // CronService.createJob(
+        //     '*/5 * * * * *',
+        //     () => {
+        //         const url = 'http://google.com';               
+        //         new CheckService(
+        //             fileSystemLogRepository,
+        //             () => console.log(`${ url } is ok`),
+        //             ( error ) => console.log( error ),
+        //         ).execute( url );
+        //     }
+        // );
     }
 }
